@@ -5,9 +5,16 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.geometry.Point2D;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import jdk.nashorn.internal.objects.Global;
+
+import java.awt.*;
+import java.util.Random;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -60,6 +67,14 @@ public class SnakeHead extends GameEntity implements Animatable {
         if (Globals.DKeyDown && player == "Player2") {
             dir = dir + turnRate;
         }
+
+        Random rand = new Random();
+        if(rand.nextInt(400) == 1){
+            new SimpleEnemy(pane);
+            new SimplePowerup(pane);
+        }
+
+
         // set rotation and position
         setRotate(dir);
         Point2D heading = Utils.directionToVector(dir, speed);
@@ -93,6 +108,10 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         if (Globals.playersAlive == 0){
             System.out.println("Game Over");
+            ImageView gameOver = new ImageView(Globals.gameOver);
+            gameOver.setX(400);
+            gameOver.setY(230);
+            pane.getChildren().add(gameOver);
             Globals.gameLoop.stop();
         }
     }
