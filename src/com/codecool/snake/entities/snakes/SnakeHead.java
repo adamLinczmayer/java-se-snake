@@ -8,7 +8,7 @@ import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextBuilder;
+import jdk.nashorn.internal.objects.Global;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -16,8 +16,9 @@ public class SnakeHead extends GameEntity implements Animatable {
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
+    private String player;
 
-    public SnakeHead(Pane pane, int xc, int yc) {
+    public SnakeHead(Pane pane, int xc, int yc, String player) {
         super(pane);
         setX(xc);
         setY(yc);
@@ -25,23 +26,36 @@ public class SnakeHead extends GameEntity implements Animatable {
         tail = this;
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
+        this.player = player;
 
 
         addPart(4);
     }
 
     public void step() {
-        Text Healthnote = new Text("Health: " + String.valueOf(health));
-        Healthnote.setX(30);
-        Healthnote.setY(30);
+
+        Text Healthnote = new Text("Health: " + health);
+        if (player.equals("Player1")) {
+            Healthnote.setX(900);
+            Healthnote.setY(30);
+        }else {
+            Healthnote.setX(30);
+            Healthnote.setY(30);
+        }
         pane.getChildren().add(Healthnote);
 
 
         double dir = getRotate();
-        if (Globals.leftKeyDown) {
+        if (Globals.leftKeyDown && player == "Player1") {
             dir = dir - turnRate;
         }
-        if (Globals.rightKeyDown) {
+        if (Globals.rightKeyDown && player == "Player1") {
+            dir = dir + turnRate;
+        }
+        if (Globals.AKeyDown && player == "Player2") {
+            dir = dir - turnRate;
+        }
+        if (Globals.DKeyDown && player == "Player2") {
             dir = dir + turnRate;
         }
         // set rotation and position
@@ -64,6 +78,18 @@ public class SnakeHead extends GameEntity implements Animatable {
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
+            Globals.playersAlive --;
+            for (GameEntity entity : Globals.getGameObjects()) {
+                if (entity instanceof SnakeBody) {
+                    if (((SnakeBody) entity).getPlayer() == player){
+                        entity.destroy();
+                    }
+                }
+            }
+            destroy();
+        }
+
+        if (Globals.playersAlive == 0){
             System.out.println("Game Over");
             Globals.gameLoop.stop();
         }
@@ -71,7 +97,7 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newPart = new SnakeBody(pane, tail);
+            SnakeBody newPart = new SnakeBody(pane, tail, player);
             tail = newPart;
         }
     }
