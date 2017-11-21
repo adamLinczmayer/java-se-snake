@@ -33,6 +33,14 @@ public class Globals {
         oldGameObjects = new LinkedList<>();
     }
 
+    public static void init() {
+        gameObjects = new LinkedList<>();
+        newGameObjects = new LinkedList<>();
+        oldGameObjects = new LinkedList<>();
+        leftKeyDown = false;
+        rightKeyDown = false;
+    }
+
     public static void addGameObject(GameEntity toAdd) {
         newGameObjects.add(toAdd);
     }
