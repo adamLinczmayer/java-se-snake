@@ -7,6 +7,8 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBuilder;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -24,10 +26,17 @@ public class SnakeHead extends GameEntity implements Animatable {
         setImage(Globals.snakeHead);
         pane.getChildren().add(this);
 
+
         addPart(4);
     }
 
     public void step() {
+        Text Healthnote = new Text("Health: " + String.valueOf(health));
+        Healthnote.setX(30);
+        Healthnote.setY(30);
+        pane.getChildren().add(Healthnote);
+
+
         double dir = getRotate();
         if (Globals.leftKeyDown) {
             dir = dir - turnRate;
@@ -51,6 +60,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
         }
+
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {

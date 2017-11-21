@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -20,6 +21,7 @@ public class Globals {
     public static Image powerupBerry = new Image("powerup_berry.png");
     //.. put here the other images you want to use
 
+    public static Text health;
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;
     public static List<GameEntity> gameObjects;
