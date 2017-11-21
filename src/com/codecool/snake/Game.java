@@ -61,8 +61,8 @@ public class Game extends Pane {
 
     public void restartButton(Pane pane) {
         Button restartButton = new Button("Restart");
-        restartButton.setLayoutX(10);
-        restartButton.setLayoutY(20);
+        restartButton.setLayoutX(20);
+        restartButton.setLayoutY(650);
         EventHandler<MouseEvent> restart = e -> {
             restartGame(pane);
         };
