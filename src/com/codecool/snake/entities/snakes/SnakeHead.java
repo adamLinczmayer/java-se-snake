@@ -89,6 +89,17 @@ public class SnakeHead extends GameEntity implements Animatable {
                     interactable.apply(this);
                     System.out.println(interactable.getMessage());
                 }
+                if (entity instanceof SnakeBody && ((SnakeBody) entity).getPlayer() != player) {
+                    for (GameEntity entity2 : Globals.getGameObjects()) {
+                        if (entity2 instanceof SnakeBody) {
+                            if (((SnakeBody) entity2).getPlayer() == player){
+                                entity2.destroy();
+                            }
+                        }
+                    }
+                    destroy();
+                    Globals.playersAlive --;
+                }
             }
         }
 
