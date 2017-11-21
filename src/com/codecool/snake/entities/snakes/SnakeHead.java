@@ -7,7 +7,7 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
-import jdk.nashorn.internal.objects.Global;
+import javafx.scene.text.Text;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
@@ -16,6 +16,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
     private String player;
+    private Text healthNote;
 
     public SnakeHead(Pane pane, int xc, int yc, String player) {
         super(pane);
@@ -27,10 +28,25 @@ public class SnakeHead extends GameEntity implements Animatable {
         pane.getChildren().add(this);
         this.player = player;
 
+
         addPart(4);
     }
 
     public void step() {
+        pane.getChildren().remove(healthNote);
+        healthNote = new Text("Health: " + health);
+
+        if (player.equals("Player1")) {
+            healthNote.setX(900);
+            healthNote.setY(30);
+        }else {
+            healthNote.setX(30);
+            healthNote.setY(30);
+        }
+        pane.getChildren().add(healthNote);
+
+
+
         double dir = getRotate();
         if (Globals.leftKeyDown && player == "Player1") {
             dir = dir - turnRate;
@@ -60,6 +76,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
         }
+
 
         // check for game over condition
         if (isOutOfBounds() || health <= 0) {
