@@ -60,6 +60,8 @@ public class Globals {
         leftKeyDown = false;
         rightKeyDown = false;
         playersAlive = 2;
+        snakeBody = new Image("snake_body.png");
+        snakeBody2 = new Image("snake_body.png");
     }
 
     public static void addGameObject(GameEntity toAdd) {
