@@ -5,6 +5,7 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.AnotherEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.geometry.Point2D;
@@ -72,6 +73,7 @@ public class SnakeHead extends GameEntity implements Animatable {
         if(rand.nextInt(400) == 1){
             new SimpleEnemy(pane);
             new SimplePowerup(pane);
+            new AnotherEnemy(pane);
         }
 
 
