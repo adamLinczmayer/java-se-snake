@@ -5,6 +5,8 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.SlowingEnemy;
+import com.codecool.snake.entities.enemies.AnotherEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.geometry.Point2D;
@@ -12,14 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import jdk.nashorn.internal.objects.Global;
 
-import java.awt.*;
 import java.util.Random;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
-    private static final float speed = 2;
+    private double speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
@@ -73,6 +73,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         if(rand.nextInt(400) == 1){
             new SimpleEnemy(pane);
             new SimplePowerup(pane);
+            new SlowingEnemy(pane);
+            new AnotherEnemy(pane);
         }
 
 
@@ -122,7 +124,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             System.out.println("Game Over");
             ImageView gameOver = new ImageView(Globals.gameOver);
             gameOver.setX(400);
-            gameOver.setY(230);
+            gameOver.setY(0);
             pane.getChildren().add(gameOver);
             Globals.gameLoop.stop();
         }
@@ -165,16 +167,20 @@ public class SnakeHead extends GameEntity implements Animatable {
         }
     }
 
-    public void changeToRealSnake(SnakeHead snakeHead){
-        for(GameEntity entity : Globals.getGameObjects()){
-            if(entity instanceof  SnakeBody && ((SnakeBody) entity).getPlayer().equals(snakeHead.player)){
+    public void changeToRealSnake(SnakeHead snakeHead) {
+        for (GameEntity entity : Globals.getGameObjects()) {
+            if (entity instanceof SnakeBody && ((SnakeBody) entity).getPlayer().equals(snakeHead.player)) {
                 entity.setImage(Globals.realSnakeSkin);
             }
-            if(snakeHead.player.equals("Player1")){
+            if (snakeHead.player.equals("Player1")) {
                 Globals.snakeBody = Globals.realSnakeSkin;
-            } else{
+            } else {
                 Globals.snakeBody2 = Globals.realSnakeSkin;
             }
         }
+    }
+
+    public void changeSpeed(double differ) {
+        speed -= differ;
     }
 }

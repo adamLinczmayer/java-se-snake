@@ -1,5 +1,7 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.enemies.SlowingEnemy;
+import com.codecool.snake.entities.enemies.AnotherEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.RealSnake;
 import com.codecool.snake.entities.powerups.RedSnake;
@@ -9,8 +11,9 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 
 
 public class Game extends Pane {
@@ -25,10 +28,11 @@ public class Game extends Pane {
         new SnakeHead(this, 300, 500, "Player2");
         new SnakeHead(this, 800, 500, "Player1");
 
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
-        new SimpleEnemy(this);
+//        new SimpleEnemy(this);
+//        new SimpleEnemy(this);
+//        new SimpleEnemy(this);
+//        new SimpleEnemy(this);
+        new AnotherEnemy(this);
 
         new SimplePowerup(this);
         new SimplePowerup(this);
@@ -50,6 +54,10 @@ public class Game extends Pane {
         new RealSnake(this);
         new RealSnake(this);
 
+        new SlowingEnemy(this);
+        new SlowingEnemy(this);
+        new SlowingEnemy(this);
+        new SlowingEnemy(this);
     }
 
     public void start() {
@@ -95,6 +103,12 @@ public class Game extends Pane {
         init();
         restartButton(pane);
         Globals.gameLoop.start();
+    }
+    public void setTableBackground(Image tableBackground, boolean repeat) {
+        BackgroundRepeat backgroundRepeat = repeat ? BackgroundRepeat.REPEAT : BackgroundRepeat.NO_REPEAT;
+        setBackground(new javafx.scene.layout.Background(new BackgroundImage(tableBackground,
+                backgroundRepeat, backgroundRepeat,
+                BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
 
 }
