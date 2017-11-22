@@ -16,10 +16,26 @@ public class Globals {
 
     public static Image snakeHead = new Image("snake_head.png");
     public static Image snakeBody = new Image("snake_body.png");
+    public static Image snakeBody2 = new Image("snake_body.png");
     public static Image simpleEnemy = new Image("simple_enemy.png");
     public static Image powerupBerry = new Image("powerup_berry.png");
     public static Image gameOver = new Image("snakegameover.png");
     //.. put here the other images you want to use
+
+    // images for new powerups
+        // red snake
+    public static Image redApple = new Image("red_apple.png");
+    public static Image redBody = new Image("red_snake_body.png");
+        // yellow snake
+    public static Image yellowApple = new Image("yellow_apple.png");
+    public static Image yellowBody = new Image("yellow_snake_body.png");
+        // real snake
+    public static Image meat = new Image("meat.png");
+    public static Image realSnakeSkin = new Image("snakeskin.png");
+
+    // speed power change
+    public static Image fastPower = new Image("fast.png");
+
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;

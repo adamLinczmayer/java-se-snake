@@ -25,7 +25,11 @@ public class SnakeBody extends GameEntity implements Animatable {
     public SnakeBody(Pane pane, GameEntity parent, String player) {
         super(pane);
         this.parent = parent;
-        setImage(Globals.snakeBody);
+        if(player == "Player1") {
+            setImage(Globals.snakeBody);
+        } else{
+            setImage(Globals.snakeBody2);
+        }
         this.player = player;
 
         // place it visually below the current tail
