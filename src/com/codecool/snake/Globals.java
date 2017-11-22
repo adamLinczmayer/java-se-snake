@@ -36,7 +36,7 @@ public class Globals {
     public static Image meat = new Image("meat.png");
     public static Image realSnakeSkin = new Image("snakeskin.png");
 
-    // speed power change
+        // speed power change
     public static Image fastPower = new Image("fast.png");
 
 
