@@ -1,5 +1,6 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.powerups.FastSnake;
 import com.codecool.snake.entities.enemies.SlowingEnemy;
 import com.codecool.snake.entities.enemies.AnotherEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
@@ -58,6 +59,19 @@ public class Game extends Pane {
         new SlowingEnemy(this);
         new SlowingEnemy(this);
         new SlowingEnemy(this);
+
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
     }
 
     public void start() {

@@ -183,4 +183,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void changeSpeed(double differ) {
         speed -= differ;
     }
+    public void changeSpeedUp(double differ){
+        speed += differ;
+    }
 }
