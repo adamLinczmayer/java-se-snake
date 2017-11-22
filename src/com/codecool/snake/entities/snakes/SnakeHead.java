@@ -5,20 +5,20 @@ import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.enemies.SlowingEnemy;
+import com.codecool.snake.entities.enemies.AnotherEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.geometry.Point2D;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import jdk.nashorn.internal.objects.Global;
 
-import java.awt.*;
 import java.util.Random;
 
 public class SnakeHead extends GameEntity implements Animatable {
 
-    private static final float speed = 2;
+    private double speed = 2;
     private static final float turnRate = 2;
     private GameEntity tail; // the last element. Needed to know where to add the next part.
     private int health;
@@ -72,6 +72,8 @@ public class SnakeHead extends GameEntity implements Animatable {
         if(rand.nextInt(400) == 1){
             new SimpleEnemy(pane);
             new SimplePowerup(pane);
+            new SlowingEnemy(pane);
+            new AnotherEnemy(pane);
         }
 
 
@@ -136,5 +138,9 @@ public class SnakeHead extends GameEntity implements Animatable {
 
     public void changeHealth(int diff) {
         health += diff;
+    }
+
+    public void changeSpeed(double differ) {
+        speed -= differ;
     }
 }
