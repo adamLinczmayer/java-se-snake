@@ -123,7 +123,7 @@ public class SnakeHead extends GameEntity implements Animatable {
             System.out.println("Game Over");
             ImageView gameOver = new ImageView(Globals.gameOver);
             gameOver.setX(400);
-            gameOver.setY(230);
+            gameOver.setY(0);
             pane.getChildren().add(gameOver);
             Globals.gameLoop.stop();
         }
