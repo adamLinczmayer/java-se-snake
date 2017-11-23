@@ -20,7 +20,7 @@ public class GetSomeHealth extends GameEntity implements Animatable, Interactabl
     public GetSomeHealth(Pane pane) {
         super(pane);
 
-        setImage(Globals.snakeHead);
+        setImage(Globals.whiteRat);
         pane.getChildren().add(this);
         int speed = 1;
         Random rnd = new Random();

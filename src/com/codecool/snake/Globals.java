@@ -39,6 +39,8 @@ public class Globals {
         // speed power change
     public static Image fastPower = new Image("fast.png");
 
+        // health
+    public static Image whiteRat = new Image("rat.png");
 
     public static boolean leftKeyDown;
     public static boolean rightKeyDown;
