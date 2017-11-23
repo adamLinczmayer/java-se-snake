@@ -46,9 +46,9 @@ public class Globals {
     public static boolean rightKeyDown;
     public static boolean AKeyDown;
     public static boolean DKeyDown;
-    public static List<GameEntity> gameObjects;
-    public static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
-    public static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
+    static List<GameEntity> gameObjects;
+    static List<GameEntity> newGameObjects; // Holds game objects crated in this frame.
+    static List<GameEntity> oldGameObjects; // Holds game objects that will be destroyed this frame.
     public static GameLoop gameLoop;
     public static int playersAlive;
 
@@ -58,7 +58,7 @@ public class Globals {
         oldGameObjects = new LinkedList<>();
     }
 
-    public static void init() {
+    static void init() {
         gameObjects = new LinkedList<>();
         newGameObjects = new LinkedList<>();
         oldGameObjects = new LinkedList<>();

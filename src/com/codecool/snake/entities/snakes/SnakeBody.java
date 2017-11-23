@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 
 public class SnakeBody extends GameEntity implements Animatable {
@@ -25,7 +26,7 @@ public class SnakeBody extends GameEntity implements Animatable {
     public SnakeBody(Pane pane, GameEntity parent, String player) {
         super(pane);
         this.parent = parent;
-        if(player == "Player1") {
+        if(Objects.equals(player, "Player1")) {
             setImage(Globals.snakeBody);
         } else{
             setImage(Globals.snakeBody2);

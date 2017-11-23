@@ -8,13 +8,13 @@ import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.enemies.SlowingEnemy;
 import com.codecool.snake.entities.enemies.AnotherEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.SimplePowerup;
+import com.codecool.snake.entities.powerups.*;
 import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class SnakeHead extends GameEntity implements Animatable {
@@ -41,31 +41,18 @@ public class SnakeHead extends GameEntity implements Animatable {
     }
 
     public void step() {
-        pane.getChildren().remove(healthNote);
-        healthNote = new Text("Health: " + health);
-
-        if (player.equals("Player1")) {
-            healthNote.setX(900);
-            healthNote.setY(30);
-        }else {
-            healthNote.setX(30);
-            healthNote.setY(30);
-        }
-        pane.getChildren().add(healthNote);
-
-
 
         double dir = getRotate();
-        if (Globals.leftKeyDown && player == "Player1") {
+        if (Globals.leftKeyDown && Objects.equals(player, "Player1")) {
             dir = dir - turnRate;
         }
-        if (Globals.rightKeyDown && player == "Player1") {
+        if (Globals.rightKeyDown && Objects.equals(player, "Player1")) {
             dir = dir + turnRate;
         }
-        if (Globals.AKeyDown && player == "Player2") {
+        if (Globals.AKeyDown && Objects.equals(player, "Player2")) {
             dir = dir - turnRate;
         }
-        if (Globals.DKeyDown && player == "Player2") {
+        if (Globals.DKeyDown && Objects.equals(player, "Player2")) {
             dir = dir + turnRate;
         }
 
@@ -75,6 +62,11 @@ public class SnakeHead extends GameEntity implements Animatable {
             new SimplePowerup(pane);
             new SlowingEnemy(pane);
             new AnotherEnemy(pane);
+            new FastSnake(pane);
+            new YellowSnake(pane);
+            new RedSnake(pane);
+            new RealSnake(pane);
+            new GetSomeHealth(pane);
         }
 
 
@@ -92,15 +84,16 @@ public class SnakeHead extends GameEntity implements Animatable {
                     interactable.apply(this);
                     System.out.println(interactable.getMessage());
                 }
-                if (entity instanceof SnakeBody && ((SnakeBody) entity).getPlayer() != player) {
+                if (entity instanceof SnakeBody && !Objects.equals(((SnakeBody) entity).getPlayer(), player)) {
                     for (GameEntity entity2 : Globals.getGameObjects()) {
                         if (entity2 instanceof SnakeBody) {
-                            if (((SnakeBody) entity2).getPlayer() == player){
+                            if (Objects.equals(((SnakeBody) entity2).getPlayer(), player)){
                                 entity2.destroy();
                             }
                         }
                     }
                     destroy();
+                    deathHealth(health);
                     Globals.playersAlive --;
                 }
             }
@@ -108,16 +101,18 @@ public class SnakeHead extends GameEntity implements Animatable {
 
 
         // check for game over condition
-        if (isOutOfBounds() || health <= 0) {
+        if (isOutOfBounds() || health <= 0 || speed <= 0) {
             Globals.playersAlive --;
             for (GameEntity entity : Globals.getGameObjects()) {
                 if (entity instanceof SnakeBody) {
-                    if (((SnakeBody) entity).getPlayer() == player){
-                        entity.destroy();
+                    if (!Objects.equals(((SnakeBody) entity).getPlayer(), player)) {
+                        continue;
                     }
+                    entity.destroy();
                 }
             }
             destroy();
+            deathHealth(health);
         }
 
         if (Globals.playersAlive == 0){
@@ -128,17 +123,32 @@ public class SnakeHead extends GameEntity implements Animatable {
             pane.getChildren().add(gameOver);
             Globals.gameLoop.stop();
         }
+
+        pane.getChildren().remove(healthNote);
+        healthNote = new Text("Health: " + health);
+
+        if (player.equals("Player1")) {
+            healthNote.setX(900);
+            healthNote.setY(30);
+        }else {
+            healthNote.setX(30);
+            healthNote.setY(30);
+        }
+        pane.getChildren().add(healthNote);
     }
 
     public void addPart(int numParts) {
         for (int i = 0; i < numParts; i++) {
-            SnakeBody newPart = new SnakeBody(pane, tail, player);
-            tail = newPart;
+            tail = new SnakeBody(pane, tail, player);
         }
     }
 
     public void changeHealth(int diff) {
         health += diff;
+    }
+
+    public void deathHealth(int diff){
+        health -= diff;
     }
 
     public void changeToRed(SnakeHead snakeHead){

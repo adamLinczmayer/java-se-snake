@@ -9,8 +9,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-import java.awt.*;
-
 public class Main extends Application {
 
     public static void main(String[] args) {
@@ -21,8 +19,11 @@ public class Main extends Application {
         primaryStage.setTitle("Snake Game");
         Pane pane = new Pane();
         Text text = new Text(150, Globals.WINDOW_HEIGHT / 2, "Snake Game by Abba");
+        Text text2 = new Text(400, Globals.WINDOW_HEIGHT / 1.5, "Press any key");
         text.setFont(new Font("Verdana", 65));
+        text2.setFont(new Font("Verdana", 30));
         pane.getChildren().add(text);
+        pane.getChildren().add(text2);
         Scene scene = new Scene(pane, Globals.WINDOW_WIDTH, Globals.WINDOW_HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.show();
