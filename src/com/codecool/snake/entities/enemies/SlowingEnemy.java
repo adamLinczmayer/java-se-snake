@@ -69,6 +69,6 @@ public class SlowingEnemy extends GameEntity implements Animatable, Interactable
 
     @Override
     public String getMessage() {
-        return "50 damage";
+        return "Slooooow down";
     }
 }

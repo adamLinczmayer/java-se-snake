@@ -25,10 +25,8 @@ public class Game extends Pane {
         new SnakeHead(this, 300, 500, "Player2");
         new SnakeHead(this, 800, 500, "Player1");
 
-//        new SimpleEnemy(this);
-//        new SimpleEnemy(this);
-//        new SimpleEnemy(this);
-//        new SimpleEnemy(this);
+        new SimpleEnemy(this);
+        new SimpleEnemy(this);
         new AnotherEnemy(this);
 
         new SimplePowerup(this);
