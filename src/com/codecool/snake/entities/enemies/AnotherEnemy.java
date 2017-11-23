@@ -72,6 +72,6 @@ public class AnotherEnemy extends GameEntity implements Animatable, Interactable
 
     @Override
     public String getMessage() {
-        return "10 damage";
+        return "20 damage";
     }
 }
