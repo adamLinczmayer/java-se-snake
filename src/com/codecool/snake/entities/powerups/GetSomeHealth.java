@@ -15,12 +15,12 @@ import java.util.Random;
 public class GetSomeHealth extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
-    private static final double damage = 0.5;
+    private static final int demage = 20;
 
     public GetSomeHealth(Pane pane) {
         super(pane);
 
-        setImage(Globals.fastPower);
+        setImage(Globals.snakeHead);
         pane.getChildren().add(this);
         int speed = 1;
         Random rnd = new Random();
@@ -63,13 +63,13 @@ public class GetSomeHealth extends GameEntity implements Animatable, Interactabl
 
     @Override
     public void apply(SnakeHead player) {
-        player.changeHealth();
+        player.changeHealth(+demage);
         destroy();
     }
 
     @Override
     public String getMessage() {
-        return "Yeahh Chrome";
+        return "Yeahh HEALTH";
     }
 }
 
