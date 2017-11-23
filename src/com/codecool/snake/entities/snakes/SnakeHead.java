@@ -93,7 +93,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                         }
                     }
                     destroy();
-                    deathHealth(health);
+                    changeHealth(-health);
                 }
             }
         }
@@ -111,7 +111,7 @@ public class SnakeHead extends GameEntity implements Animatable {
                 }
             }
             destroy();
-            deathHealth(health);
+            changeHealth(-health);
         }
 
         if (Globals.playersAlive == 0){
@@ -145,11 +145,7 @@ public class SnakeHead extends GameEntity implements Animatable {
     public void changeHealth(int diff) {
         health += diff;
     }
-
-    public void deathHealth(int diff){
-        health -= diff;
-    }
-
+    
     public void changeToRed(SnakeHead snakeHead){
         for(GameEntity entity : Globals.getGameObjects()){
             if(entity instanceof SnakeBody && ((SnakeBody) entity).getPlayer().equals(snakeHead.player)){
