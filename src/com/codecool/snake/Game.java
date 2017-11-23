@@ -1,9 +1,9 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.powerups.*;
 import com.codecool.snake.entities.enemies.SlowingEnemy;
 import com.codecool.snake.entities.enemies.AnotherEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
-import com.codecool.snake.entities.powerups.SimplePowerup;
 import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -36,10 +36,46 @@ public class Game extends Pane {
         new SimplePowerup(this);
         new SimplePowerup(this);
 
+        new RedSnake(this);
+        new RedSnake(this);
+        new RedSnake(this);
+        new RedSnake(this);
+
+        new YellowSnake(this);
+        new YellowSnake(this);
+        new YellowSnake(this);
+        new YellowSnake(this);
+
+        new RealSnake(this);
+        new RealSnake(this);
+        new RealSnake(this);
+        new RealSnake(this);
+
         new SlowingEnemy(this);
         new SlowingEnemy(this);
         new SlowingEnemy(this);
         new SlowingEnemy(this);
+
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+        new FastSnake(this);
+
+        new GetSomeHealth(this);
+        new GetSomeHealth(this);
+        new GetSomeHealth(this);
+        new GetSomeHealth(this);
+        new GetSomeHealth(this);
+
+
     }
 
     public void start() {

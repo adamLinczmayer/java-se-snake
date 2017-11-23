@@ -10,6 +10,7 @@ import com.codecool.snake.entities.enemies.AnotherEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerup;
 import javafx.geometry.Point2D;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -140,7 +141,50 @@ public class SnakeHead extends GameEntity implements Animatable {
         health += diff;
     }
 
+    public void changeToRed(SnakeHead snakeHead){
+        for(GameEntity entity : Globals.getGameObjects()){
+            if(entity instanceof SnakeBody && ((SnakeBody) entity).getPlayer().equals(snakeHead.player)){
+                entity.setImage(Globals.redBody);
+            }
+        }
+        if(snakeHead.player.equals("Player1")){
+            Globals.snakeBody = Globals.redBody;
+        } else{
+            Globals.snakeBody2 = Globals.redBody;
+        }
+    }
+
+    public void changeToYellow(SnakeHead snakeHead){
+        for(GameEntity entity : Globals.getGameObjects()){
+            if(entity instanceof  SnakeBody && ((SnakeBody) entity).getPlayer().equals(snakeHead.player)){
+                entity.setImage(Globals.yellowBody);
+            }
+        if(snakeHead.player.equals("Player1")){
+            Globals.snakeBody = Globals.yellowBody;
+        } else{
+            Globals.snakeBody2 = Globals.yellowBody;
+        }
+        }
+    }
+
+    public void changeToRealSnake(SnakeHead snakeHead) {
+        for (GameEntity entity : Globals.getGameObjects()) {
+            if (entity instanceof SnakeBody && ((SnakeBody) entity).getPlayer().equals(snakeHead.player)) {
+                entity.setImage(Globals.realSnakeSkin);
+            }
+            if (snakeHead.player.equals("Player1")) {
+                Globals.snakeBody = Globals.realSnakeSkin;
+            } else {
+                Globals.snakeBody2 = Globals.realSnakeSkin;
+            }
+        }
+    }
+
     public void changeSpeed(double differ) {
         speed -= differ;
     }
-}
+    public void changeSpeedUp(double differ){
+        speed += differ;
+    }
+
+    }
