@@ -94,7 +94,6 @@ public class SnakeHead extends GameEntity implements Animatable {
                     }
                     destroy();
                     deathHealth(health);
-                    Globals.playersAlive --;
                 }
             }
         }
