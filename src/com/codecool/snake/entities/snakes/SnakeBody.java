@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 
 public class SnakeBody extends GameEntity implements Animatable {
@@ -16,11 +17,21 @@ public class SnakeBody extends GameEntity implements Animatable {
     private GameEntity parent;
     private Queue<Vec2d> history = new LinkedList<>();
     private static final int historySize = 10;
+    private String player;
 
-    public SnakeBody(Pane pane, GameEntity parent) {
+    public String getPlayer() {
+        return player;
+    }
+
+    public SnakeBody(Pane pane, GameEntity parent, String player) {
         super(pane);
         this.parent = parent;
-        setImage(Globals.snakeBody);
+        if(Objects.equals(player, "Player1")) {
+            setImage(Globals.snakeBody);
+        } else{
+            setImage(Globals.snakeBody2);
+        }
+        this.player = player;
 
         // place it visually below the current tail
         List<Node> children = pane.getChildren();

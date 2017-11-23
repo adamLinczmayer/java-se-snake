@@ -12,15 +12,15 @@ import javafx.scene.layout.Pane;
 import java.util.Random;
 
 // a simple enemy TODO make better ones.
-public class SimpleEnemy extends GameEntity implements Animatable, Interactable {
+public class AnotherEnemy extends GameEntity implements Animatable, Interactable {
 
     private Point2D heading;
-    private static final int damage = 10;
+    private static final int damage = 20;
 
-    public SimpleEnemy(Pane pane) {
+    public AnotherEnemy(Pane pane) {
         super(pane);
 
-        setImage(Globals.simpleEnemy);
+        setImage(Globals.anotherEnemy);
         pane.getChildren().add(this);
         int speed = 1;
         Random rnd = new Random();
@@ -49,16 +49,19 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     @Override
     public void step() {
-        if (isOutOfBounds()) {
-            destroy();
-        }
+
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
-        Random rand = new Random();
-        if(rand.nextInt(600) == 1){
-            new SimpleEnemy(pane);
+        if (isOutOfBounds()) {
+            int speed = 1;
+            double direction = this.getRotate() + 60;
+            setRotate(direction);
+            heading = Utils.directionToVector(direction, speed);
+            setX(getX() + heading.getX());
+            setY(getY() + heading.getY());;
         }
+
     }
 
     @Override
@@ -69,6 +72,6 @@ public class SimpleEnemy extends GameEntity implements Animatable, Interactable 
 
     @Override
     public String getMessage() {
-        return "10 damage";
+        return "20 damage";
     }
 }
